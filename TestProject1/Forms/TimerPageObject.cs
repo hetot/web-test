@@ -15,6 +15,9 @@ public class TimerPageObject : Form
 
     private ITextBox timer = ElementFactory.GetTextBox(By.XPath("//div[contains(@class, 'timer')]"), "timer element");
 
+    private ITextBox heplForm =
+        ElementFactory.GetTextBox(By.XPath("//div[@class='help-form is-hidden']"), "help form is hidden");
+
     public TimerPageObject() : base(By.XPath("//div[contains(@class, 'timer')]"),
         "Page with timer")
     {
@@ -27,8 +30,7 @@ public class TimerPageObject : Form
 
     public bool HelpFormIsHidden()
     {
-        return ElementFactory.GetTextBox(By.XPath("//div[@class='help-form is-hidden']"), "help form is hidden").State
-            .IsExist;
+        return heplForm.State.IsExist;
     }
 
     public void AcceptCookies()

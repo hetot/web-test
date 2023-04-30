@@ -17,7 +17,7 @@ public class AvatarForm : Form
     private IButton nextButton =
         ElementFactory.GetButton(By.XPath("//button[contains(text(), 'Next')]"), "next button");
 
-    public AvatarForm() : base(By.XPath("//h2[contains(text(), 'This is me')]"), "avatar form")
+    public AvatarForm() : base(By.XPath("//*[contains(@class, 'avatar-and-interests')]"), "avatar form")
     {
     }
 
@@ -31,30 +31,9 @@ public class AvatarForm : Form
         uncheckAllButton.Click();
     }
 
-    public void CheckThreeInterests()
+    public void CheckInterest(string interest)
     {
-        ElementFactory.GetButton(By.XPath("//label[@for='interest_ponies']"), "ponies interest").Click();
-        ElementFactory.GetButton(By.XPath("//label[@for='interest_polo']"), "polo interest").Click();
-        ElementFactory.GetButton(By.XPath("//label[@for='interest_dough']"), "dough interest").Click();
-    }
-
-    public void UploadPhoto()
-    {
-        Thread.Sleep(1000);
-        var proc1 = new Process
-        {
-            StartInfo =
-            {
-                FileName = Regex.Replace(Environment.CurrentDirectory, "bin.*", "") +
-                           "Resources/simulateKey.sh",
-                // Arguments = args,
-                UseShellExecute = false,
-                RedirectStandardError = false,
-                RedirectStandardInput = false,
-                RedirectStandardOutput = false
-            }
-        };
-        proc1.Start();
+        ElementFactory.GetButton(By.XPath($"//label[@for='interest_{interest}']"), $"{interest} interest").Click();
     }
 
     public void ClickNext()

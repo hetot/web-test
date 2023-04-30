@@ -1,5 +1,13 @@
-[{
-  "password": "Ssasasasasdfasasasa1",
-  "mail_body": "shaxzod",
-  "mail_tail": "gmail"
-}]
+[
+  {
+    "mail_body": "shaxzod",
+    "mail_tail": "gmail",
+    "url": "https://userinyerface.com/",
+    "interests": [
+      "ponies",
+      "polo",
+      "balls"
+    ],
+    "timer": "00:00:00"
+  }
+]

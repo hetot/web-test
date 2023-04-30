@@ -32,17 +32,17 @@ public class LoginForm : Form
     {
     }
 
-    public void SendPassword(String password)
+    public void SendPassword(string password)
     {
         passwordField.ClearAndType(password);
     }
 
-    public void SendMailBody(String body)
+    public void SendMailBody(string body)
     {
         emailBodyField.ClearAndType(body);
     }
 
-    public void SendMailTail(String tail)
+    public void SendMailTail(string tail)
     {
         emailTailField.ClearAndType(tail);
     }

@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Text.RegularExpressions;
 
 namespace TestProject1.Utilities;
 
@@ -16,8 +17,10 @@ public class TestDataLoader
         return testDatas[0];
     }
 
-    public void LoadTestData(String path)
+    public void LoadTestData()
     {
+        String path = Regex.Replace(Environment.CurrentDirectory, "bin.*", "") +
+                      "Resources/test_data.json";
         using (StreamReader r = new StreamReader(path))
         {
             string json = r.ReadToEnd();

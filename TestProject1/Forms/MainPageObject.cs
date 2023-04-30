@@ -11,10 +11,9 @@ namespace TestProject1.Forms;
 
 public class MainPageObject : Form
 {
-    private ILink link = AqualityServices.Get<IElementFactory>()
-        .GetLink(By.XPath("//a[contains(text(), 'HERE')]"), "link");
+    private ILink link = ElementFactory.GetLink(By.XPath("//a[@class='start__link']"), "link");
 
-    public MainPageObject() : base(By.XPath("//p[contains(text(), 'Hi and welcome to User')]"),
+    public MainPageObject() : base(By.XPath("//a[@class='start__link']"),
         "User Interface main page")
     {
     }

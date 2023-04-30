@@ -19,29 +19,26 @@ public class Tests
         browser.Maximize();
         mainPage = new MainPageObject();
         timerPage = new TimerPageObject();
-        Console.WriteLine(Regex.Replace(Environment.CurrentDirectory, "bin.*", "") +
-                          "Resources/test_data.json");
-        TestDataLoader.Instance.LoadTestData(Regex.Replace(Environment.CurrentDirectory, "bin.*", "") +
-                                             "Resources/test_data.json");
+        TestDataLoader.Instance.LoadTestData();
         testData = TestDataLoader.Instance.GetTestData();
     }
 
     [SetUp]
     public void Setup()
     {
-        browser.GoTo("https://userinyerface.com/");
+        browser.GoTo(testData.url);
         browser.WaitForPageToLoad();
     }
 
     [Test]
-    public void TestCase1()
+    public void LoginTest()
     {
         Assert.True(mainPage.State.IsDisplayed, "main page is not opened");
         mainPage.ClickLink();
 
         LoginForm loginForm = new LoginForm();
         Assert.True(loginForm.State.IsDisplayed, "card 1 is not displayed");
-        loginForm.SendPassword(testData.password);
+        loginForm.SendPassword(RandomGenerator.GenerateRandomString(10) + testData.mail_body + "1" + "A");
         loginForm.SendMailBody(testData.mail_body);
         loginForm.SendMailTail(testData.mail_tail);
         loginForm.SelectMailTail();
@@ -51,17 +48,19 @@ public class Tests
         AvatarForm avatarForm = new AvatarForm();
         Assert.True(avatarForm.State.IsDisplayed, "card 2 is not displayed");
         avatarForm.ClickUpload();
-        avatarForm.UploadPhoto();
-        Thread.Sleep(5000);
+        KeyboardManipulations.UploadPhoto();
         avatarForm.UncheckAll();
-        avatarForm.CheckThreeInterests();
-        Thread.Sleep(1000);
+        foreach (string interest in testData.interests)
+        {
+            avatarForm.CheckInterest(interest);
+        }
+
         avatarForm.ClickNext();
         Assert.True(new DetailsForm().State.IsDisplayed, "card 3 is not displayed");
     }
 
     [Test]
-    public void TestCase2()
+    public void HelpFormTest()
     {
         Assert.True(mainPage.State.IsDisplayed, "main page is not opened");
         mainPage.ClickLink();
@@ -70,7 +69,7 @@ public class Tests
     }
 
     [Test]
-    public void TestCase3()
+    public void CookiesTest()
     {
         Assert.True(mainPage.State.IsDisplayed, "main page is not opened");
         mainPage.ClickLink();
@@ -79,11 +78,11 @@ public class Tests
     }
 
     [Test]
-    public void TestCase4()
+    public void TimerTest()
     {
         Assert.True(mainPage.State.IsDisplayed, "main page is not opened");
         mainPage.ClickLink();
-        Assert.True(timerPage.GetTimer().Equals("00:00:00"), "timer is not started from 00:00:00");
+        Assert.True(timerPage.GetTimer().Equals(testData.timer), "timer is not started from 00:00:00");
     }
 
     [OneTimeTearDown]
