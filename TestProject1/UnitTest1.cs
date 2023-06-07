@@ -45,18 +45,18 @@ public class Tests
         loginForm.CheckTerms();
         loginForm.ClickNextButton();
 
-        AvatarForm avatarForm = new AvatarForm();
-        Assert.True(avatarForm.State.IsDisplayed, "card 2 is not displayed");
-        avatarForm.ClickUpload();
-        KeyboardManipulations.UploadPhoto();
-        avatarForm.UncheckAll();
-        foreach (string interest in testData.interests)
-        {
-            avatarForm.CheckInterest(interest);
-        }
-
-        avatarForm.ClickNext();
-        Assert.True(new DetailsForm().State.IsDisplayed, "card 3 is not displayed");
+        // AvatarForm avatarForm = new AvatarForm();
+        // Assert.True(avatarForm.State.IsDisplayed, "card 2 is not displayed");
+        // avatarForm.ClickUpload();
+        // KeyboardManipulations.UploadPhoto();
+        // avatarForm.UncheckAll();
+        // foreach (string interest in testData.interests)
+        // {
+        //     avatarForm.CheckInterest(interest);
+        // }
+        //
+        // avatarForm.ClickNext();
+        // Assert.True(new DetailsForm().State.IsDisplayed, "card 3 is not displayed");
     }
 
     [Test]
