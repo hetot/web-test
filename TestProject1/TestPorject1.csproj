@@ -18,4 +18,11 @@
         <PackageReference Include="coverlet.collector" Version="3.2.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Resources\settings.json" />
+      <EmbeddedResource Include="Resources\settings.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+    </ItemGroup>
+
 </Project>

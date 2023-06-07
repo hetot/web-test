@@ -1,5 +1,6 @@
 using System.Text.RegularExpressions;
 using Aquality.Selenium.Browsers;
+using Aquality.Selenium.Core.Applications;
 using TestProject1.Forms;
 using TestProject1.Utilities;
 
