@@ -16,7 +16,7 @@ public class Tests
     public void OneTimeSetup()
     {
         browser = AqualityServices.Browser;
-        browser.Maximize();
+//         browser.Maximize();
         mainPage = new MainPageObject();
         timerPage = new TimerPageObject();
         TestDataLoader.Instance.LoadTestData();
